@@ -11,6 +11,7 @@ require("dotenv").config();
 
 const authRouter = require("./routes/auth");
 const postRouter = require("./routes/post");
+const homeRouter = require("./routes/home");
 
 const connectDB = async () => {
   try {
@@ -32,10 +33,11 @@ const connectDB = async () => {
 
 connectDB();
 // app.get("/abc", (req, res) => res.send("hello world"));
-
+app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRouter);
 app.use("/api/posts", postRouter);
+app.use("/", homeRouter);
 
 //insert
 app.get("/chen", (req, res) => {
